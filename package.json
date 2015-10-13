@@ -1,0 +1,11 @@
+{
+  "name": "test_double_kata",
+  "version": "1.0.0",
+  "description": "KataBankOCR",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Katie Miller",
+  "license": "ISC"
+}
