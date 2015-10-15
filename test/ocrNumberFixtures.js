@@ -1,3 +1,5 @@
+var assert    = require('assert');
+
 var ocrNumbers = {
   0:   [" _ ",
         "| |",
@@ -50,21 +52,40 @@ var ocrNumbers = {
         "   "]
 };
 
-var rowForOcrNumber = function (number, rowIndex) {
+var rowForOcrDigit = function (number, rowIndex) {
   return ocrNumbers[number][rowIndex];
-}
-exports.construct = function (number) {
-  var numberString = number.toString(),
-      rows = [ [''], [''], [''], [''] ];
+};
 
-  for (var i = 0; i < rows.length; i++) {
-    var row = '';
-    for (var j = 0; j < numberString.length; j++) {
-      row += rowForOcrNumber(numberString[j], i);
-    }
-    row += '\n';
-    rows[i] = row;
+var rowForOcrNumber = function (number, rowIndex) {
+  var row = '',
+      numberString = number.toString(),
+      numberLen = numberString.length;
+  for (var i = 0; i < numberLen; i++) {
+    row += rowForOcrDigit(numberString[i], rowIndex);
+  }
+  return row += '\n';
+};
+
+exports.construct = function (number) {
+  var rows = [ [''], [''], [''], [''] ],
+      rowsLen = rows.length;
+
+  for (var i = 0; i < rowsLen; i++) {
+    rows[i] = rowForOcrNumber(number, i);
   }
 
   return rows.join('');
 };
+
+describe('ocrNumberFixtures', function () {
+  describe('#construct()', function () {
+    it('should be able to grab one number at a time for conversion', function () {
+    var accountNumber = " _  _  _ \n" +
+                        "|_|| | _|\n" +
+                        "|_||_| _|\n" +
+                        "         \n";
+
+      assert.equal(accountNumber, exports.construct('803'));
+    })
+  })
+})

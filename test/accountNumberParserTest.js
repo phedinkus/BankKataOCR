@@ -5,9 +5,13 @@ var ocrNumberFixtures   = require('./ocrNumberFixtures');
 describe('accountNumberParser', function () {
   describe('#parse()', function () {
     it('should convert an OCR account number to numeric representation', function () {
-      var ocrAccountNumber = ocrNumberFixtures.construct(3776);
+      var ocrAccountNumber = ocrNumberFixtures.construct('371645923');
       var parsedAccountNumber = accountNumberParser.parse(ocrAccountNumber);
-      assert.equal(3776, parsedAccountNumber);
+      assert.equal('371645923', parsedAccountNumber);
     });
+
+    it('should throw an error if the account number is less than 9 numbers')
+
+    it('should throw an error if the account number contains anything other than numbers')
   });
 });
