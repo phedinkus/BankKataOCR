@@ -52,4 +52,4 @@ The 9 could be an 8 if the scanner had missed one |. Or the 0 could be an 8. Or 
 
 To run tests you must have node installed on your machine. Installation is easy and can be done following instructions on [Node's website](https://nodejs.org/en/).
 
-Once Node is installed, the tests can be run from the root directory of this project with `npm test`.
+Once Node is installed, run `npm install` in the root directory of the project to install the test suite dependencies. Tests can be run from the root directory of this project with `npm test`.
