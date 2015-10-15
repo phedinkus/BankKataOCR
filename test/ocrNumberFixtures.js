@@ -79,13 +79,21 @@ exports.construct = function (number) {
 
 describe('ocrNumberFixtures', function () {
   describe('#construct()', function () {
-    it('should be able to grab one number at a time for conversion', function () {
-    var accountNumber = " _  _  _ \n" +
-                        "|_|| | _|\n" +
-                        "|_||_| _|\n" +
-                        "         \n";
+    it('should provide the ocr representation of a number', function () {
+      var accountNumber = " _  _  _ \n" +
+                          "|_|| | _|\n" +
+                          "|_||_| _|\n" +
+                          "         \n";
 
       assert.equal(accountNumber, exports.construct('803'));
+    })
+    it('should return all zeros if requested', function () {
+      var accountNumber = " _  _  _ \n" +
+                          "| || || |\n" +
+                          "|_||_||_|\n" +
+                          "         \n";
+
+      assert.equal(accountNumber, exports.construct('000'));
     })
   })
 })
